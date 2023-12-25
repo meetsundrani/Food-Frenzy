@@ -2,8 +2,9 @@
   "name": "yes",
   "version": "1.0.0",
   "description": "Namaste react from meet",
-  "main": "App.js",
   "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "repository": {
@@ -13,6 +14,11 @@
   "author": "Meet Sundrani",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.10.2"
+    "parcel": "^2.10.2",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
