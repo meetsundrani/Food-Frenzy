@@ -23,7 +23,7 @@ const [resInfo, setResInfo] = useState(null);
 
     console.log(menudata);
     return (
-        <div className="container mt-4">
+        <div className="container-fluid mt-4">
             <div className="card">
                 <div className="card-body">
                     <h1 className="card-title">{name}</h1>
