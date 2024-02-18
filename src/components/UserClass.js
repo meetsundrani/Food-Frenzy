@@ -18,7 +18,7 @@ export class UserClass extends React.Component {
                 <h4>Count: {count}</h4>
                 <button onClick={() => {
                     this.setState({
-                        count: this.state.count++
+                        count: this.state.count += 1
                     });
                 }}>increase count</button>
             </div>
