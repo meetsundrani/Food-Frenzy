@@ -44,7 +44,7 @@ import { Link } from "react-router-dom";
             </div>
             <div className="res-container">
                 {filteredRestaurants.map((restaurant) => (
-                    <Link key={restaurant.info.id}  to={"/restaurant/" + restaurant.info.id}><RestaurantCard  resData={restaurant} /></Link>
+                    <Link key={restaurant.info.id} className="card-names"  to={"/restaurant/" + restaurant.info.id}><RestaurantCard  resData={restaurant} /></Link>
                 ))}
             </div>
         </div>
