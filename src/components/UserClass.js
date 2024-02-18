@@ -4,23 +4,28 @@ export class UserClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            count: 0,
+            userData: {
+                name:"dummy name",
+                location: "default"
+            },
         }
     }
+
+    async componentDidMount() {
+        const userData = await fetch('https://api.github.com/users/meetsundrani');
+        const json = await userData.json();
+        this.setState({
+            userData: json
+        })
+    }
     render() {
-        const {name} = this.props
-        const { count, count2 } = this.state;
+        const { name, location, avatar_url } = this.state.userData;
         return (
             <div className="user-card">
+                <img src={avatar_url} />
                 <h2>Name: {name}</h2>
-                <h3>Loation: Mumbai</h3>
+                <h3>Loation: {location}</h3>
                 <h4>Profession: Programmer</h4>
-                <h4>Count: {count}</h4>
-                <button onClick={() => {
-                    this.setState({
-                        count: this.state.count += 1
-                    });
-                }}>increase count</button>
             </div>
         );
     }
