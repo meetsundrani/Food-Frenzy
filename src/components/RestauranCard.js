@@ -2,7 +2,6 @@ import { CON_URL } from "../utils/constants"
 const RestaurantCard = (props) => {
     const { resData } = props;
 
-    // }, []);
     const { name, cloudinaryImageId, cuisines, avgRatingString, sla, costForTwo, id } = resData?.info;
     return (
         <div className="res-card">
