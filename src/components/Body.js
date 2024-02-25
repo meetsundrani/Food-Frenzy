@@ -3,27 +3,25 @@ import { useState, useEffect } from "react"
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import useRestaurantCards from "../utils/useRestaurantCards"
  
  const Body = () => {
      const [listOfRestaurants, setListOfRestaurants] = useState([]);
      const [filteredRestaurants, setfilteredRestaurants] = useState([]);
      const [searchTxt, setsearchTxt] = useState('');
-    useEffect(() => {  
-        fetchData();
-    }, []);
-
-
-     const fetchData = async () => {
-         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.3088173&lng=73.2202396&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-         const json = await data.json();
-         setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-         setfilteredRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-     }
-
      const onlineStatus = useOnlineStatus();
+     const resInfo = useRestaurantCards();
 
-     if (onlineStatus === false) return <h1>Looks like you're offline!! Please check your internet connection</h1>
+     useEffect(() => {
+         if (onlineStatus === false) return; // No need to set state if offline
+         if (!resInfo) return; // No need to proceed if resInfo is null
+         const restaurants = resInfo.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+         setListOfRestaurants(restaurants);
+         setfilteredRestaurants(restaurants);
+     }, [onlineStatus, resInfo]);
 
+     if (onlineStatus === false) return <h1>Looks like you're offline!! Please check your internet connection</h1>;
+     if (!resInfo) return <Shimmer />;
      if(listOfRestaurants.length === 0) {
         return <Shimmer/>;
      }
