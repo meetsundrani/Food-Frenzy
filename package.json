@@ -14,8 +14,11 @@
   "author": "Meet Sundrani",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^10.4.17",
     "parcel": "^2.10.2",
-    "process": "^0.11.10"
+    "postcss": "^8.4.35",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.4.1"
   },
   "dependencies": {
     "bootstrap": "^5.3.2",
