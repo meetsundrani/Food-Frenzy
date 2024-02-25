@@ -12,8 +12,6 @@ const RestaurantMenu = () => {
     let menudata = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
     menudata = menudata.filter(x => x?.card?.card?.title);
 
-
-    console.log(menudata);
     return (
         <div className="container-fluid mt-4">
             <div className="card">

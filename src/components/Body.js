@@ -37,7 +37,6 @@ import useOnlineStatus from "../utils/useOnlineStatus";
                 // searchTxt
                        const filteredRes = listOfRestaurants.filter((res) => res.info.name.toLowerCase().includes(searchTxt.toLowerCase()));
                         setfilteredRestaurants(filteredRes);
-                console.log(searchTxt);
             }}>Search</button>
             </div>
                 <button className="filter-btn" onClick={() =>{
