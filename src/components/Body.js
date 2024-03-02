@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestauranCard"
+import RestaurantCard, { withPromotedLabel } from "./RestauranCard"
 import { useState, useEffect } from "react"
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ const Body = () => {
     const [searchTxt, setsearchTxt] = useState('');
     const onlineStatus = useOnlineStatus();
     const resInfo = useRestaurantCards();
+    const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
     useEffect(() => {
         if (onlineStatus === false) return; // No need to set state if offline
@@ -30,7 +31,7 @@ const Body = () => {
             <div className="filter flex">
                 <div className="search m-4 p-4">
                     <input type="text" className="border border-solid border-black" value={searchTxt} onChange={(e) => { setsearchTxt(e.target.value) }} />
-                    <button className="px-4 py-2 bg-blue-100 m-4 rounded-lg" onClick={() => {
+                    <button className="px-4 py-2 bg-gray-100 m-4 rounded-lg" onClick={() => {
                         //filter the restuarant cards and update the list
                         // searchTxt
                         const filteredRes = listOfRestaurants.filter((res) => res.info.name.toLowerCase().includes(searchTxt.toLowerCase()));
@@ -38,17 +39,19 @@ const Body = () => {
                     }}>Search</button>
                 </div>
                 <div className="search m-4 p-4">
-                    <button className="px-4 py-2 bg-blue-100 m-4 rounded-lg" onClick={() => {
+                    <button className="px-4 py-2 bg-gray-100 m-4 rounded-lg" onClick={() => {
                         const filteredList = listOfRestaurants.filter(
                             (x) => x.info.avgRating > 4
                         );
                         setfilteredRestaurants(filteredList);
-                    }}> Top Rated Restauransts</button>
+                    }}> Top Rated Restaurants</button>
                 </div>
             </div>
             <div className="flex flex-wrap">
                 {filteredRestaurants.map((restaurant) => (
-                    <Link key={restaurant.info.id} className="card-names" to={"/restaurant/" + restaurant.info.id}><RestaurantCard resData={restaurant} /></Link>
+                    <Link key={restaurant.info.id} className="card-names" to={"/restaurant/" + restaurant.info.id}>
+                        {restaurant.info.veg ? (<RestaurantCardPromoted resData={restaurant} />) : (<RestaurantCard resData={restaurant} />)}
+                    </Link>
                 ))}
             </div>
         </div>
