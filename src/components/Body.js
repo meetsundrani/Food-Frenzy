@@ -1,9 +1,10 @@
 import RestaurantCard, { withPromotedLabel } from "./RestauranCard"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import useRestaurantCards from "../utils/useRestaurantCards"
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -12,6 +13,7 @@ const Body = () => {
     const onlineStatus = useOnlineStatus();
     const resInfo = useRestaurantCards();
     const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+    const { userName, setUserName } = useContext(UserContext);
 
     useEffect(() => {
         if (onlineStatus === false) return; // No need to set state if offline
@@ -45,6 +47,10 @@ const Body = () => {
                         );
                         setfilteredRestaurants(filteredList);
                     }}> Top Rated Restaurants</button>
+                </div>
+                <div className="search m-7 p-7">
+                    UserName:<input type="text" className="border border-solid border-black" value={userName} onChange={(e) => setUserName(e.target.value)} />
+
                 </div>
             </div>
             <div className="flex flex-wrap">
