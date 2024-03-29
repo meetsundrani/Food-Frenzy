@@ -3,11 +3,15 @@ import { LOGO_URL } from "../utils/constants"
 import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { useSelector } from "react-redux";
 
 const Header = () => {
     const [btnName, setBtnName] = useState("Login");
 
     const data = useContext(UserContext);
+
+    // subscribing to the store using a selector.
+    const cartItems = useSelector((store) => store.cart.items);
 
     const onlineStatus = useOnlineStatus();
     useEffect(() => {
@@ -23,7 +27,7 @@ const Header = () => {
                     <li className="px-4"><Link to="/">Home</Link></li>
                     <li className="px-4"><Link to="/about">About us</Link></li>
                     <li className="px-4"><Link to="/contact">Contact us</Link></li>
-                    <li className="px-4">Cart</li>
+                    <li className="px-4 font-bold text-xl">Cart - ({cartItems.length} items)</li>
                     <li className="px-4 font-bold">{data.loggedInUser}</li>
                     <button className="px-4 py-2 bg-gray-200 m-4 rounded-lg" onClick={() => {
                         btnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
