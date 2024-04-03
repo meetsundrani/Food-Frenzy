@@ -1,4 +1,4 @@
-# Namaste React 🚀
+# Food Frenzy🚀
 /** 
  * ** Header
  * - Logo
