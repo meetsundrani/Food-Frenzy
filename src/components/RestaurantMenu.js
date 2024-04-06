@@ -6,14 +6,16 @@ import { useState } from "react"
 
 const RestaurantMenu = () => {
     const { resId } = useParams();
-    const [showIndex, setShowIndex] = useState(0);
+    const [showIndex, setShowIndex] = useState(null);
     const resInfo = useRestaurantMenu(resId);
     if (resInfo === null) return <Shimmer />;
-    const { name, cuisines, costForTwoMessage } = resInfo?.cards[0]?.card?.card?.info;
+    console.log(resInfo?.cards[4]);
+    const { name, cuisines, costForTwoMessage } = resInfo?.cards[2]?.card?.card?.info;
 
-    let categories = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(x => x?.card?.card?.['@type'] === 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory');
+    let categories = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(x => x?.card?.card?.['@type'] === 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory');
 
     const handleClick = (index) => {
+        debugger
         // If the clicked index matches the currently shown index, close it
         // Otherwise, toggle the visibility of the clicked category
         setShowIndex(prevIndex => prevIndex === index ? null : index);

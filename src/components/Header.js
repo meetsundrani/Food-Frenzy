@@ -27,7 +27,7 @@ const Header = () => {
                     <li className="px-4"><Link to="/">Home</Link></li>
                     <li className="px-4"><Link to="/about">About us</Link></li>
                     <li className="px-4"><Link to="/contact">Contact us</Link></li>
-                    <li className="px-4 font-bold text-xl">Cart - ({cartItems.length} items)</li>
+                    <li className="px-4 font-bold text-xl"><Link to="/cart">Cart - ({cartItems.length} items)</Link></li>
                     <li className="px-4 font-bold">{data.loggedInUser}</li>
                     <button className="px-4 py-2 bg-gray-200 m-4 rounded-lg" onClick={() => {
                         btnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
