@@ -16,7 +16,7 @@ const AppLayout = () => {
 
     useEffect(() => {
 const data = {
-    name: "Meet Sundrani",
+    name: "",
 }
 setUserName(data.name);
     }, [])

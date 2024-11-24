@@ -14,7 +14,6 @@ const RestaurantCard = (props) => {
             <h4>{avgRatingString} stars</h4>
             <h4>{costForTwo}</h4>
             <h4>{sla.deliveryTime} minutes</h4>
-            <h1 className="font-bold">{userContextData.loggedInUser}</h1>
         </div>
     )
 }
